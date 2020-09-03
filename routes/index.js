@@ -29,7 +29,7 @@ router.post("/register", middleware.checkRegisterForm, function(req, res) {
         passport.authenticate("local")(req, res, function() {
             // display the welcome flash notification and redirect
             req.flash("success", "Welcome to YelpCamp " + user.username);
-            res.redirect("/campgrounds");
+            res.redirect("/events");
         });
     });
 });
@@ -41,7 +41,7 @@ router.get("/login", function(req, res) {
 
 // handling login logic with passport middleware
 router.post("/login", middleware.checkLogInForm, passport.authenticate("local", {
-    successRedirect: "/campgrounds",
+    successRedirect: "/events",
     failureRedirect: "login",
     successFlash: 'Welcome Back!',
     failureFlash: 'Invalid username or password.'
@@ -51,7 +51,7 @@ router.post("/login", middleware.checkLogInForm, passport.authenticate("local", 
 router.get("/logout", function(req, res) {
     req.logout();
     req.flash("success", "Logged you out!"); // handle logout flash msg
-    res.redirect("/campgrounds");
+    res.redirect("/events");
 });
 
 // export the router module

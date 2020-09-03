@@ -1,5 +1,5 @@
 // all middlewares are here
-var Campground = require("../models/campground");
+var Event = require("../models/event");
 var Comment = require("../models/comment");
 
 // declare a empty middleware object
@@ -41,18 +41,18 @@ middlewareObj.checkRegisterForm = function(req, res, next) {
     }
 }
 
-// middleware to check if the user has the campground ownership
-middlewareObj.checkCampgroundOwnership = function(req, res, next) {
+// middleware to check if the user has the event ownership
+middlewareObj.checkEventOwnership = function(req, res, next) {
     // is user logged in
     if (req.isAuthenticated()) {
-        // find the campground with the requested id
-        Campground.findById(req.params.id, function(err, foundCampground) {
+        // find the event with the requested id
+        Event.findById(req.params.id, function(err, foundEvent) {
             if (err) {
-                req.flash("error", "Campground not found!");
+                req.flash("error", "Event not found!");
                 res.redriect("back");
             } else {
-                // does the user own the campground?
-                if (foundCampground.author.id.equals(req.user._id)) {
+                // does the user own the event?
+                if (foundEvent.author.id.equals(req.user._id)) {
                     next();
                 } else {
                     req.flash("error", "You don't have permission to do that!");
@@ -71,7 +71,7 @@ middlewareObj.checkCampgroundOwnership = function(req, res, next) {
 middlewareObj.checkCommentOwnership = function(req, res, next) {
     // is user logged in
     if (req.isAuthenticated()) {
-        // find the campground with the requested id
+        // find the event with the requested id
         Comment.findById(req.params.comment_id, function(err, foundComment) {
             if (err) {
                 res.redriect("back");

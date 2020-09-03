@@ -6,23 +6,23 @@
                 <h1>Welcome To EventHub</h1>
                 <p>View our hand-picked events from all over the world</p>
                 <p>
-                    <a class="btn btn-primary btn-large" href="/campgrounds/new">Add New Event</a>
+                    <a class="btn btn-primary btn-large" href="/events/new">Add New Event</a>
                 </p>
             </div>
         </header>
 
         <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-            <%campgrounds.forEach(function (campground) {%>
+            <%events.forEach(function (event) {%>
                 <div class="col-md-3 col-sm-6">
                     <div class="thumbnail mini">
-                        <img src="<%= campground.image%>">
+                        <img src="<%= event.image%>">
                         <div class="caption">
                             <h4>
-                                <%= campground.name%>
+                                <%= event.name%>
                             </h4>
                         </div>
                         <p>
-                            <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">More Info</a>
+                            <a href="/events/<%= event._id %>" class="btn btn-primary">More Info</a>
                         </p>
                     </div>
                 </div>

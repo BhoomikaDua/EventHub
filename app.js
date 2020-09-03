@@ -7,14 +7,14 @@ var express = require("express"),
     passport = require("passport"),
     LocalStrategy = require("passport-local"),
     methodOverride = require("method-override"),
-    Campground = require("./models/campground"),
+    Event = require("./models/event"),
     Comment = require("./models/comment"),
-    User = require("./models/user"),
-    seedDB = require("./seeds");
+    User = require("./models/user");
+//seedDB = require("./seeds");
 
 // requiring routes
 var commentRoutes = require("./routes/comments"),
-    campgroundRoutes = require("./routes/campgrounds"),
+    eventRoutes = require("./routes/events"),
     indexRoutes = require('./routes/index');
 
 // set up the mongodb
@@ -56,8 +56,8 @@ app.use(function(req, res, next) {
 
 // set up routes
 app.use("/", indexRoutes);
-app.use("/campgrounds", campgroundRoutes);
-app.use("/campgrounds/:id/comments", commentRoutes);
+app.use("/events", eventRoutes);
+app.use("/events/:id/comments", commentRoutes);
 
 // set up the server
 /* app.listen(process.env.PORT, process.env.IP, function () {
